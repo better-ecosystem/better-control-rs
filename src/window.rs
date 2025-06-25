@@ -16,6 +16,11 @@ pub fn build_main_window(app: &adw::Application) -> ApplicationWindow {
 
     let view_stack = ViewStack::builder().build();
     let view_switcher = ViewSwitcher::builder().stack(&view_stack).build();
+    // Add margin to the view_switcher so it doesn't touch the window edges
+    view_switcher.set_margin_top(12);
+    view_switcher.set_margin_bottom(12);
+    view_switcher.set_margin_start(12);
+    view_switcher.set_margin_end(12);
 
     // Add all pages in alphabetical order, no header bar
     let audio = gtk4::Label::new(Some("Audio Management Page (empty)"));
