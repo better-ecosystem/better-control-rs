@@ -4,6 +4,7 @@ use gtk4::glib;
 use gtk4::Box as GtkBox;
 use gtk4::gdk;
 use gtk4::EventControllerKey;
+use crate::pages::system_info::SystemInfoPage;
 
 pub fn build_main_window(app: &adw::Application) -> ApplicationWindow {
     let window = ApplicationWindow::builder()
@@ -45,9 +46,10 @@ pub fn build_main_window(app: &adw::Application) -> ApplicationWindow {
     let page = view_stack.page(&power);
     page.set_icon_name(Some("battery-ac-adapter-symbolic"));
 
-    let system_info = gtk4::Label::new(Some("System Info Page (empty)"));
-    view_stack.add_titled(&system_info, Some("system_info"), "System Info");
-    let page = view_stack.page(&system_info);
+    // Remove the placeholder and add the real System Info page
+    let system_info_page = SystemInfoPage::new();
+    view_stack.add_titled(&system_info_page.container, Some("system_info"), "System Info");
+    let page = view_stack.page(&system_info_page.container);
     page.set_icon_name(Some("dialog-information-symbolic"));
 
     let network = gtk4::Label::new(Some("Network Management Page (empty)"));

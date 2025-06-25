@@ -1,5 +1,6 @@
 mod app;
 mod window;
+mod pages;
 
 use adw::prelude::*;
 use gtk4::gio;
