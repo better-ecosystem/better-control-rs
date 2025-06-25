@@ -250,7 +250,7 @@ better-control-rs/
 - [ ] Build `AdwAboutDialog` with application metadata # changed idea, we don't need it.
 - [ ] Create `AdwPreferencesDialog` with basic settings # changed idea, we don't need it.
 - [ ] Add `AdwPreferencesPage` and `AdwPreferencesGroup` structure # changed idea, we don't need it.
-- [ ] Implement `GtkShortcutController` for keyboard shortcuts
+- [x] Implement `GtkShortcutController` for keyboard shortcuts
 - [ ] Add `AdwToastOverlay` for user feedback # changed idea, we don't need it.
 - [ ] Create settings persistence with `GSettings` # changed idea, we don't need it.
 

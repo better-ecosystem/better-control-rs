@@ -2,6 +2,8 @@ use adw::prelude::*;
 use adw::{ApplicationWindow, ViewStack, ViewSwitcher};
 use gtk4::glib;
 use gtk4::Box as GtkBox;
+use gtk4::gdk;
+use gtk4::EventControllerKey;
 
 pub fn build_main_window(app: &adw::Application) -> ApplicationWindow {
     let window = ApplicationWindow::builder()
@@ -56,5 +58,26 @@ pub fn build_main_window(app: &adw::Application) -> ApplicationWindow {
     vbox.append(&view_switcher);
     vbox.append(&view_stack);
     window.set_content(Some(&vbox));
+
+    // Add keyboard shortcuts for switching pages
+    let key_controller = EventControllerKey::new();
+    let view_stack_clone = view_stack.clone();
+    key_controller.connect_key_pressed(move |_, keyval, _keycode, state| {
+        if state.contains(gdk::ModifierType::CONTROL_MASK) {
+            match keyval.to_unicode() {
+                Some('1') => view_stack_clone.set_visible_child_name("audio"),
+                Some('2') => view_stack_clone.set_visible_child_name("bluetooth"),
+                Some('3') => view_stack_clone.set_visible_child_name("displays"),
+                Some('4') => view_stack_clone.set_visible_child_name("power"),
+                Some('5') => view_stack_clone.set_visible_child_name("system_info"),
+                Some('6') => view_stack_clone.set_visible_child_name("network"),
+                _ => return glib::Propagation::Proceed,
+            }
+            return glib::Propagation::Stop;
+        }
+        glib::Propagation::Proceed
+    });
+    window.add_controller(key_controller);
+
     window
 }
