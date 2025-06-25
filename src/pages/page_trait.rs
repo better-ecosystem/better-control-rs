@@ -1,0 +1,1 @@
+// Common page interface (empty)

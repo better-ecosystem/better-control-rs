@@ -1,0 +1,19 @@
+# Rust
+/target/
+**/*.rs.bk
+Cargo.lock
+# GTK resources
+resources/_compiled/
+# IDE
+.idea/
+.vscode/
+# Misc
+*.swp
+*.bak
+*.tmp
+.DS_Store
+
+
+# Added by cargo
+
+/target

@@ -1,0 +1,21 @@
+[package]
+name = "better-control-rs"
+version = "0.1.0"
+edition = "2024"
+authors = ["Your Name <you@example.com>"]
+description = "A modern system control panel built with Rust, GTK4, and libadwaita."
+license = "GPL-3.0"
+
+[dependencies]
+gtk4 = "0.9.7"
+glib = "0.20.12"
+gio = "0.20.12"
+zbus = "5.7.1"
+tokio = { version = "1.45.1", features = ["rt-multi-thread", "macros"] }
+serde = { version = "1.0.219", features = ["derive"] }
+serde_json = "1.0.140"
+tracing = "0.1.41"
+tracing-subscriber = "0.3.19"
+anyhow = "1.0.98"
+thiserror = "2.0.12"
+adw = { package = "libadwaita", version = "0.7.2" }
