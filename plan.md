@@ -238,26 +238,26 @@ better-control-rs/
 ### Week 2: Menu System & Dialogs
 
 **Goals:**
-- Implement hamburger menu system
-- Create About dialog
-- Build preferences dialog
+- Implement hamburger menu system    # changed idea, we don't need it.
+- Create About dialog                # changed idea, we don't need it.
+- Build preferences dialog           # changed idea, we don't need it.
 - Add keyboard shortcuts
 
 **Technical Tasks:**
-- [ ] Add `GtkMenuButton` to header bar
-- [ ] Create `GMenuModel` for menu structure
-- [ ] Implement `GSimpleAction` system for menu items
-- [ ] Build `AdwAboutDialog` with application metadata
-- [ ] Create `AdwPreferencesDialog` with basic settings
-- [ ] Add `AdwPreferencesPage` and `AdwPreferencesGroup` structure
+- [ ] Add `GtkMenuButton` to header bar # changed idea, we don't need it.
+- [ ] Create `GMenuModel` for menu structure # changed idea, we don't need it.
+- [ ] Implement `GSimpleAction` system for menu items # changed idea, we don't need it.
+- [ ] Build `AdwAboutDialog` with application metadata # changed idea, we don't need it.
+- [ ] Create `AdwPreferencesDialog` with basic settings # changed idea, we don't need it.
+- [ ] Add `AdwPreferencesPage` and `AdwPreferencesGroup` structure # changed idea, we don't need it.
 - [ ] Implement `GtkShortcutController` for keyboard shortcuts
-- [ ] Add `AdwToastOverlay` for user feedback
-- [ ] Create settings persistence with `GSettings`
+- [ ] Add `AdwToastOverlay` for user feedback # changed idea, we don't need it.
+- [ ] Create settings persistence with `GSettings` # changed idea, we don't need it.
 
 **Deliverables:**
-- Functional hamburger menu
-- Complete About dialog
-- Basic preferences dialog
+- Functional hamburger menu # changed idea, we don't need it.
+- Complete About dialog # changed idea, we don't need it.
+- Basic preferences dialog # changed idea, we don't need it.
 - Working keyboard shortcuts
 
 ### Week 3: System Information Page
