@@ -216,7 +216,7 @@ better-control-rs/
 **Goals:**
 - Set up project structure and build system
 - Create basic application framework
-- Implement main window with AdwHeaderBar
+- Implement main window with AdwHeaderBar # Plans changed, we won't have AdwHeaderBar
 - Set up AdwViewSwitcher navigation
 
 **Technical Tasks:**
@@ -225,7 +225,7 @@ better-control-rs/
 - [x] Set up `build.rs` for resource compilation
 - [x] Create main application structure (`AdwApplication`)
 - [x] Implement `AdwApplicationWindow` with basic layout
-- [x] Add `AdwHeaderBar` with integrated `AdwViewSwitcher`
+- [x] Add `AdwHeaderBar` with integrated `AdwViewSwitcher` # Plans changed, we won't have AdwHeaderBar because it looks bad on tilling window managers
 - [x] Create `AdwViewStack` for page management
 - [x] Implement basic page structure with placeholder content
 - [x] Set up proper error handling and logging
@@ -509,7 +509,7 @@ better-control-rs/
 - Action system for menu and shortcuts
 
 **UI Layer:**
-- `AdwHeaderBar` with `AdwViewSwitcher`
+- `AdwHeaderBar` with `AdwViewSwitcher` # Plans changed, we won't have AdwHeaderBar
 - `AdwViewStack` for page management
 - `AdwPreferencesPage` for each settings category
 - Custom widgets for specialized controls
