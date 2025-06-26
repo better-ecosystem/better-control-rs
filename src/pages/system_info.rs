@@ -113,8 +113,30 @@ impl SystemInfoPage {
                         while let Some(child) = container.first_child() {
                             container.remove(&child);
                         }
-                        for label in results {
-                            container.append(&gtk::Label::new(Some(&label)));
+                        let icon_names = [
+                            "computer-symbolic",                 // hostname
+                            "cpu-symbolic",                      // cpu
+                            "memory-symbolic",                   // memory
+                            "applications-engineering-symbolic", // distro
+                            "drive-harddisk-symbolic",           // disk
+                            "freon-gpu-temperature-symbolic",    // gpu
+                        ];
+                        for (i, label) in results.iter().enumerate() {
+                            let row = gtk::Box::new(gtk::Orientation::Horizontal, 8);
+                            let icon = gtk::Image::from_icon_name(
+                                icon_names
+                                    .get(i)
+                                    .copied()
+                                    .unwrap_or("dialog-question-symbolic"),
+                            );
+                            icon.set_pixel_size(24);
+                            row.append(&icon);
+                            let text = gtk::Label::new(Some(label));
+                            text.set_xalign(0.0);
+                            row.append(&text);
+                            row.set_halign(gtk::Align::Start);
+                            row.set_valign(gtk::Align::Center);
+                            container.append(&row);
                         }
                     }
                 }
