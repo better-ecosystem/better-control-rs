@@ -3,7 +3,6 @@ mod window;
 mod pages;
 
 use adw::prelude::*;
-use gtk4::gio;
 use app::BetterControlApp;
 use window::build_main_window;
 

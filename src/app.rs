@@ -1,6 +1,4 @@
-use adw::prelude::*;
 use adw::Application;
-use gtk4::gio;
 
 pub struct BetterControlApp;
 
