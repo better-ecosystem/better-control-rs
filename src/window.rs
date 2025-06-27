@@ -7,17 +7,7 @@ use gtk4::EventControllerKey;
 use gtk4::gdk;
 use gtk4::glib;
 
-pub fn build_main_window(app: &adw::Application) -> ApplicationWindow {
-    let window = ApplicationWindow::builder()
-        .application(app)
-        .title("Better Control RS")
-        .default_width(900)
-        .default_height(600)
-        .build();
-
-    // Use a vertical GtkBox to hold the view switcher and content
-    let vbox = GtkBox::new(gtk4::Orientation::Vertical, 0);
-
+pub fn build_main_window(app: &adw::Application) -> (ApplicationWindow, ViewStack) {
     let view_stack = ViewStack::builder().build();
     let view_switcher = ViewSwitcher::builder().stack(&view_stack).build();
     // Add margin to the view_switcher so it doesn't touch the window edges
@@ -26,6 +16,23 @@ pub fn build_main_window(app: &adw::Application) -> ApplicationWindow {
     view_switcher.set_margin_start(12);
     view_switcher.set_margin_end(12);
 
+    // Use a vertical GtkBox to hold the view switcher and content
+    let vbox = GtkBox::new(gtk4::Orientation::Vertical, 0);
+    vbox.append(&view_switcher);
+    vbox.append(&view_stack);
+
+    let window = ApplicationWindow::builder()
+        .application(app)
+        .title("Better Control RS")
+        .default_width(900)
+        .default_height(600)
+        .content(&vbox)
+        .build();
+
+    (window, view_stack)
+}
+
+pub fn setup_pages(view_stack: &ViewStack, window: &ApplicationWindow) {
     // Add all pages in alphabetical order, no header bar
     let audio = gtk4::Label::new(Some("Audio Management Page (empty)"));
     view_stack.add_titled(&audio, Some("audio"), "Audio");
@@ -62,10 +69,6 @@ pub fn build_main_window(app: &adw::Application) -> ApplicationWindow {
     let page = view_stack.page(&network);
     page.set_icon_name(Some("preferences-system-network-symbolic"));
 
-    vbox.append(&view_switcher);
-    vbox.append(&view_stack);
-    window.set_content(Some(&vbox));
-
     // Add keyboard shortcuts for switching pages
     let key_controller = EventControllerKey::new();
     let view_stack_clone = view_stack.clone();
@@ -85,6 +88,4 @@ pub fn build_main_window(app: &adw::Application) -> ApplicationWindow {
         glib::Propagation::Proceed
     });
     window.add_controller(key_controller);
-
-    window
 }

@@ -1,18 +1,25 @@
 mod app;
-mod window;
 mod pages;
+mod window;
 
 use adw::prelude::*;
 use app::BetterControlApp;
-use window::build_main_window;
+use gtk4::glib;
+use window::{build_main_window, setup_pages};
 
 #[tokio::main]
 async fn main() {
-    // let _ = gio::resources_register_include!("resources/ui/window.ui");
     let app = BetterControlApp::new();
+
     app.connect_activate(|app| {
-        let window = build_main_window(app);
+        let (window, view_stack) = build_main_window(app);
         window.present();
+
+        // Spawn a new task to load the pages asynchronously
+        glib::MainContext::default().spawn_local(async move {
+            setup_pages(&view_stack, &window);
+        });
     });
+
     app.run();
 }
