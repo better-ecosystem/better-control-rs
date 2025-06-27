@@ -1,5 +1,5 @@
 use crate::pages::async_page::AsyncPage;
-use crate::pages::page_trait::Page;
+
 use adw::prelude::*;
 use gtk4 as gtk;
 use std::sync::mpsc;
@@ -135,11 +135,7 @@ impl SystemInfoPage {
                         for (i, result_str) in results.iter().enumerate() {
                             let parts: Vec<&str> = result_str.splitn(2, ':').collect();
                             let title = parts[0].trim();
-                            let subtitle = if parts.len() > 1 {
-                                parts[1].trim()
-                            } else {
-                                ""
-                            };
+                            let subtitle = if parts.len() > 1 { parts[1].trim() } else { "" };
 
                             let row = adw::ActionRow::builder()
                                 .title(title)
@@ -165,11 +161,4 @@ impl SystemInfoPage {
             container: async_page.container,
         }
     }
-}
-
-impl Page for SystemInfoPage {
-    fn get_widget(&self) -> &gtk::Widget {
-        self.container.upcast_ref::<gtk::Widget>()
-    }
-    fn refresh(&mut self) {}
 }
