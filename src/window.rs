@@ -1,3 +1,4 @@
+use crate::pages::power;
 use crate::pages::system_info::SystemInfoPage;
 use adw::prelude::*;
 use adw::{ApplicationWindow, ViewStack, ViewSwitcher};
@@ -41,7 +42,7 @@ pub fn build_main_window(app: &adw::Application) -> ApplicationWindow {
     let page = view_stack.page(&displays);
     page.set_icon_name(Some("display-symbolic"));
 
-    let power = gtk4::Label::new(Some("Power Management Page (empty)"));
+    let power = power::create_power_page();
     view_stack.add_titled(&power, Some("power"), "Power");
     let page = view_stack.page(&power);
     page.set_icon_name(Some("battery-ac-adapter-symbolic"));

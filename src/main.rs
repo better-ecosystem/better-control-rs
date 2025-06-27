@@ -6,7 +6,8 @@ use adw::prelude::*;
 use app::BetterControlApp;
 use window::build_main_window;
 
-fn main() {
+#[tokio::main]
+async fn main() {
     // let _ = gio::resources_register_include!("resources/ui/window.ui");
     let app = BetterControlApp::new();
     app.connect_activate(|app| {
