@@ -1,9 +1,7 @@
 use adw::prelude::*;
 use adw::{ActionRow, ExpanderRow, PreferencesGroup};
-use gtk4::prelude::*;
-use gtk4::{Box, Image, Label, ListBox, Orientation, ToggleButton};
+use gtk4::{Box, Image, Label, Orientation, ToggleButton};
 use std::process::Command;
-use tokio::task;
 
 pub fn create_power_page() -> Box {
     let container = Box::new(Orientation::Vertical, 12);
@@ -78,9 +76,7 @@ pub fn create_power_page() -> Box {
     }
 
     // Battery Information
-    let battery_expander = ExpanderRow::builder()
-        .title("Battery Information")
-        .build();
+    let battery_expander = ExpanderRow::builder().title("Battery Information").build();
     let battery_list = Box::new(Orientation::Vertical, 0);
     battery_expander.add_row(&battery_list);
 
@@ -89,8 +85,10 @@ pub fn create_power_page() -> Box {
             for (idx, maybe_battery) in batteries.enumerate() {
                 if let Ok(battery) = maybe_battery {
                     let state = format!("State: {:?}", battery.state());
-                    let percentage =
-                        format!("Percentage: {:.2}%", battery.state_of_charge().value * 100.0);
+                    let percentage = format!(
+                        "Percentage: {:.2}%",
+                        battery.state_of_charge().value * 100.0
+                    );
                     let time_to_full = if let Some(time) = battery.time_to_full() {
                         format!("Time to full: {} seconds", time.value)
                     } else {
@@ -107,10 +105,7 @@ pub fn create_power_page() -> Box {
                     battery_list.append(&battery_group);
 
                     // State
-                    let state_row = ActionRow::builder()
-                        .title("State")
-                        .subtitle(&state)
-                        .build();
+                    let state_row = ActionRow::builder().title("State").subtitle(&state).build();
                     state_row.add_prefix(&Image::from_icon_name("battery-symbolic"));
                     battery_group.add(&state_row);
 
